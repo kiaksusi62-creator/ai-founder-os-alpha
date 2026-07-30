@@ -1,23 +1,15 @@
-/**
- * Kernel package for AI Founder OS (Genesis Alpha)
- *
- * Core rule: No module may bypass the Kernel.
- */
+export class LobigoKernel {
+  private name = "Lobigo Core";
+  private version = "0.1.0";
 
-export class Kernel {
-  private initialized = false;
+  start() {
+    console.log(
+      `${this.name} gestartet - Version ${this.version}`
+    );
 
-  initialize() {
-    if (this.initialized) return;
-    // initialize core services, registries, security, etc.
-    this.initialized = true;
-    console.log('Kernel initialized');
-  }
-
-  isInitialized(): boolean {
-    return this.initialized;
+    return {
+      status: "running",
+      version: this.version
+    };
   }
 }
-
-// Export a singleton kernel instance
-export const kernel = new Kernel();
