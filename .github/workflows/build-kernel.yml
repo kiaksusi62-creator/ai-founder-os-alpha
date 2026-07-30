@@ -1,0 +1,42 @@
+name: CI - Build Kernel
+
+on:
+  push:
+    paths:
+      - 'packages/kernel/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/**'
+  pull_request:
+    paths:
+      - 'packages/kernel/**'
+      - 'package.json'
+      - 'package-lock.json'
+
+jobs:
+  build-kernel:
+    name: Build @ai-founder-os/kernel
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build kernel package
+        run: npm run -w @ai-founder-os/kernel build
+
+      - name: Upload kernel dist artifact
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kernel-dist
+          path: packages/kernel/dist
