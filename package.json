@@ -1,18 +1,19 @@
 {
-  "name": "ai-founder-os-alpha",
+  "name": "ai-founder-os",
   "version": "0.1.0",
-  "description": "",
-  "main": "index.js",
+  "private": true,
+  "description": "AI Founder OS - Genesis Alpha",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
-    "start": "node index.js",
-    "test": "echo \"No tests\" && exit 0"
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "test": "turbo test"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/kiaksusi62-creator/ai-founder-os-alpha.git"
-  },
-  "keywords": [],
-  "author": "kiaksusi62-creator",
-  "license": "MIT",
-  "dependencies": {}
+  "devDependencies": {
+    "turbo": "latest",
+    "typescript": "latest"
+  }
 }
