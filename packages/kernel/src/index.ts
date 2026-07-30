@@ -1,15 +1,31 @@
+import { SystemRegistry } from "./registry";
+
 export class LobigoKernel {
-  private name = "Lobigo Core";
+
+  registry: SystemRegistry;
+
   private version = "0.1.0";
 
+  constructor() {
+    this.registry = new SystemRegistry();
+  }
+
   start() {
+
+    this.registry.register(
+      "kernel",
+      this
+    );
+
     console.log(
-      `${this.name} gestartet - Version ${this.version}`
+      "🧠 Lobigo Core gestartet"
     );
 
     return {
       status: "running",
-      version: this.version
+      version: this.version,
+      components:
+        this.registry.list()
     };
   }
 }
